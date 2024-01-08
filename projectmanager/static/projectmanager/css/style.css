@@ -1,0 +1,21 @@
+.but {
+    background-color: #E1FEFF;
+    padding: 8px 20px;
+    text-align: center;
+    font-size: 12px;
+    float: right;
+    margin-right: 1%;
+}
+
+.com {
+    background-color: #E1FEFF;
+    padding: 4px
+}
+
+.tasks {
+    margin-left: 35px;
+}
+
+.comments {
+    margin-left: 20px;
+}

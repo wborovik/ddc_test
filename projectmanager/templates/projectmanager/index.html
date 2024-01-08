@@ -1,0 +1,15 @@
+{% extends 'projectmanager/base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    <h1>Все проекты:</h1>
+
+    <ul>
+        {% for p in projects %}
+            <li>
+                <h3><a href="{% url 'project' p.id %}">{{ p.title }}</a></h3>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

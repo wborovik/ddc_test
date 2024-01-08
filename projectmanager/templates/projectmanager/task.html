@@ -1,0 +1,39 @@
+{% extends 'projectmanager/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <form action="{% url 'project' project_id %}" method="GET">
+        <button class="but">На страницу проекта "{{ project }}"</button>
+    </form>
+     <form action="{% url 'index' %}" method="GET">
+            <button class="but">На главную</button>
+    </form>
+
+    <h2>{{ title }}</h2>
+    <p><b>Сотрудник:</b> {{ employee }}</p>
+    <p><b>Описание:</b> {{ description }}</p>
+    <p><b>Срок исполнения:</b> {{ deadline }}</p>
+    <p><b>Статус:</b> {{ status }}</p>
+    <hr>
+
+    <h3>Комментировать: </h3>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <p><button type="submit" class="com">Добавить/Обновить</button></p>
+    </form>
+
+    <h3>Комментарии:</h3>
+    <div class="tasks">
+        {% for c in comments %}
+            <p>{{ c.text }}</p>
+            <p><a href="{% url 'delete_comment' task_id c.id  %}"><button type="button"  class="com" >Удалить комментарий</button></a>
+                <a href="{% url 'comment' task_id c.id %}"><button type="button" class="com">Изменить комментарий</button></a></p>
+
+            <p style="font-size: small">Комментарий добавлен: {{ c.created_date }}</p>
+            <hr>
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'projectmanager/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <form action="{% url 'index' %}" method="GET">
+        <button class="but">На главную</button>
+    </form>
+
+    <h1>{{ title }}</h1>
+    <h3>Руководитель проекта: <small>{{ project.project_manager }}</small></h3>
+    <h3>Описание: <small>{{ project.description }}</small></h3>
+
+    {% if project.is_active %}
+        <h3>{{ status }}: <small>активный</small></h3>
+    {% else %}
+        <h3>{{ status }}: <small>неактивный</small></h3>
+    {% endif %}
+    <hr>
+
+    <div class="tasks">
+        <h2><u>Задачи:</u></h2>
+
+        {% for t in tasks %}
+            <ul>
+                <li>
+                    <h3><a href="{% url 'task' t.id %}">{{ t.title }}</a></h3>
+                </li>
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock %}
